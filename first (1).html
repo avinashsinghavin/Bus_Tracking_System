@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Google Maps</title>
+	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('contextmenu', event => event.preventDefault());
+	</script>
+	<script type="text/javascript" src="scriptfirst.js"></script>
+    <script language="javascript">
+        //get_dt();
+    </script>
+</head>
+<body>
+    <div class="navbar fixed-top navbar-light bg-light row">
+        <div class="col-2" style="text-align: left;">
+		    <img src="1.jpg">
+	    </div>
+	    <div class="col-10" style="text-align: right;">
+		    <a class="navbar-brand" href="http://giet.edu/"><button type="button" class="btn btn-primary"> HOME </button></a>
+		    <a class="navbar-brand" href="http://giet.edu/"><button type="button" class="btn btn-secondary">GIET</button></a>
+		    <a class="navbar-brand" href="request.php"><button type="button" class="btn btn-success">REQUEST FOR BUS</button></a>
+	    </div>
+	</div>
+    <div id="map"  style="line-height: 2; margin:0; padding:0;" style="height:1500px;"></div>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNYU3bIFaccSDMcTBl0wKrhz6w8c0DXrs&callback=initMap"></script>
+	<div class="row navbar fixed-bottom bg-light">
+        <div class="col-6 "><a href="#" class="text-primary">About Developer</a>
+        </div>
+        <div class="col-6"><a class="text-danger">Note:- Click on marker for more information</a>
+        </div>
+      </div>
+</body>
+<script>
+    //------------------------------------------
+    //-------------------------------------------
+    function initMap() {
+        var la=[19.048813, 19.048184, 19.049685, 19.048346, 19.047464, 19.069892 ,19.060148]
+        var lo= [83.833823, 83.832568, 83.832514, 83.831495, 83.831313, 83.815076, 83.823219]
+        var info = ["<strong> Bus 1</strong><br><a href='second.php'> Direction</a>","<strong> Bus 2</strong><br><a href='www.gps/bus2.html'> Direction</a>","<strong> Bus 3</strong><br><a href='gps/bus3.html'> Direction</a>","<strong> Bus 4</strong><br><a href='gps/bus4.html'> Direction</a>","<strong> Bus 5</strong><br><a href='gps/bus5.html'> Direction</a>","<strong> Bus 6</strong><br><a href='gps/bus6.html'> Direction</a>","<strong> Bus 7</strong><br><a href='gps/bus7.html'> Direction</a>"]
+        //----------------------------
+        $.ajax({
+		    url: 'data.php',
+		    type: 'POST',
+		    data: {
+			    what: 'get_data'
+		    },
+		    beforeSend: function(){
+			    $("#btn").html("loading...");
+            },
+		    success: function(result,status){
+			    data1=$.parseJSON(result);
+			    console.log(data1);
+			    for (var i = 0; i < data1.La.length; i++) {
+    			    la[i]=data1.La[i];
+				    lo[i]=data1.Lo[i];
+			    }
+			    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 17,
+                    center:new google.maps.LatLng(la[4],lo[4]),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                })
+                var infowindow = new google.maps.InfoWindow({})
+                var marker, i
+        for (i = 0; i < la.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(la[i], lo[i]),
+                map: map,
+            })
+            google.maps.event.addListener(
+                marker,
+                'click',
+                (function(marker, i) {
+                    return function() {
+                      infowindow.setContent(info[i])
+                      infowindow.open(map, marker)
+                    }
+                })(marker, i)
+            )
+        }
+			},
+		    error: function(){
+
+		    }
+		});
+        //---------------------------
+     
+        
+        
+    }
+
+     
+    //-------------------------------------------
+</script>
+</html>

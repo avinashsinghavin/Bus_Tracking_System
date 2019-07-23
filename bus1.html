@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> GIET BUS TRACKING </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script type="text/javascript">
+          var g1=19.048813;
+          var g2=83.833823;
+          var h1=19.075143;
+          var h2=83.809080;
+          //var to = e.options[e.selectedIndex].value;
+          function callfun(e1)
+          {
+            var e=document.getElementById(e1);
+            var to = e.options[e.selectedIndex].value;
+            //document.write(start+"<br>"+to);
+            //document.write("commingin function "+to);
+            //------------check end position condition-------
+           // document.write(start+"<br>"+to);
+            if(to==1){
+              h1=19.074837;
+              h2=83.809220;
+              //setTimeout(function(){
+              // location.reload(1);
+             // }, 1);
+            }
+            if(to==2){
+              h1= 19.071519;
+              h2= 83.812915;
+              //setTimeout(function(){
+              // location.reload(1);
+              //}, 1);
+            }
+            if(to==3){
+              h1= 19.048813;
+              h2= 83.833823;
+              setTimeout(function(){
+              location.reload(1);
+              }, 1);
+            }
+            document.write(h1+"       "+h2+"<br>"+g1+"    "+g2+"<br>"+to+ typeof(to));
+            //------------check start position condition-------
+            // g1 and g2 is start position it will depend on gps
+            
+          }
+    </script>
+  </head>
+  <body>
+    <div class="h-95 p3" style="background-color: #eee;">
+      <div class="row alert alert-primary sticky-top" role="alert">
+        <div class="col-2 ">
+          <img src="1.jpg" style="width: 25%; height: 100%;">
+        </div> 
+        <div class="col-10 "style="text-align: right; ">
+          <a href="www.stuzire.com"><button type="button" class="btn btn-primary"> HOME</button></a>
+          <a href="#"><button type="button" class="btn btn-secondary">GIET</button></a>
+          <a href="#"><button type="button" class="btn btn-success">REQUEST FOR BUS</button></a>
+        </div>       
+      </div >
+      <div class=" row alert alert-info " role="alert" style="height: 90%;">
+        <form id="BUSFORM">
+          <div class="form-row alert">
+            <div class="form-group col-6">
+              <label for="inputState">FROM</label>
+              <select id="fromplace" class="form-control">
+                <option id="giet" value="giet" selected="selected"> GIET </option>
+                  <option id="jj"> JJ </option>
+                  <option id="obs"> Old Bus Stop </option>
+              </select>
+            </div>
+            <div>
+            </div>
+            <div class="form-group col-6">
+                <label for="inputState">TO</label>
+                <select id="toplace" class="form-control">
+                  <option value="1"> Old Bus Stop </option>
+                  <option value="2"> JJ </option>
+                  <option value="3" > GIET </option>
+                </select>
+            </div>
+              <input type="button" class="btn btn-primary" onclick="callfun('toplace')" value="Search Bus">
+            </div>
+          </div>
+        </form>
+        <div>
+        <script type="text/javascript">
+          //refresh on click;
+          document.write("<center><input type='button' value='Reload Page' onClick='document.location.reload(true)'></center>");
+              document.addEventListener('contextmenu', event => event.preventDefault());
+
+            document.write(h1+"    "+h2+"  ");
+            document.write("<iframe src='https://www.google.com/maps/embed?pb=!1m25!1m12!1m3!1d482268.6983084777!2d"+h2+"!3d"+h1+"!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m10!3e0!4m4!2s"+g1+"%2C+"+g2+"!3m2!1d"+g1+"!2d"+g2+"!4m3!3m2!1d"+h1+"!2d"+h2+"!5e0!3m2!1sen!2sin!4v1552105895988' width='100%' height='1000' frameborder='0' style='border:0' allowfullscreen></iframe>");
+        </script>
+      </div>
+        <div  class="h-95 p3" style="background-color: #eee;">
+          <br><br>
+        </div>
+      <div class="row alert alert-dark fixed-bottom" role="alert">
+        About Developer 
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

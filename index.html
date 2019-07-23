@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<button onclick="get_dt()">Click to load data</button>
+	<script>
+	    var b1=[];
+	    var l1=[];
+	    var l2=[];
+	    var s1=[];
+		function get_dt(){
+			$.ajax({
+				url: 'data.php',
+				type: 'POST',
+				data: {
+					what: 'get_data'
+				},
+				beforeSend: function(){
+
+				},
+				success: function(result,status){
+					data1=$.parseJSON(result);
+					console.log(data1);
+					for (var i = 0; i < data1.Bs.length; i++) {
+					    b1.push(data1.Bs[i]);
+					    l1.push(data1.La[i]);
+					    l2.push(data1.Lo[i]);
+					    s1.push(data1.status1[i]);
+				// 		document.write(data1.Busno[i]);
+				// 		document.write("<br>");
+				// 		document.write(data1.Latitude[i]);
+				// 		document.write("<br>");
+				// 		document.write(data1.Longitude[i]);
+				// 		document.write("<br>");
+				// 		document.write(data1.status1[i]);
+					}
+				},
+				error: function(){
+
+				}
+			});
+		}
+		function prin(){
+		    for (var i = 0; i < b1.length; i++) {
+			document.write(b1[i]);
+			document.write("<br>");
+			document.write(l1[i]);
+			document.write("<br>");
+			document.write(l2[i]);
+			document.write("<br>");
+			document.write(s1[i]);
+		    }
+		}
+	</script>
+</body>
+</html>
